@@ -5,8 +5,8 @@ import 'package:flutter_lead_project/api/ApiFile.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
-
 class UpadetMydata extends StatefulWidget {
+
   final List< dynamic> leadsProfileData;
   final String FirstName;
   final String LastName;

@@ -365,10 +365,15 @@ fontSize: 20,
        child: TextField(
         // controller: citycontroller,
         decoration: InputDecoration(
-      suffixIcon: IconButton(onPressed: (){
+      suffixIcon: IconButton(
+        onPressed: (){
  showDialog(
        context: context,
        builder: (context) {
+            
+         Future.delayed(Duration(seconds: 2),(){
+    Navigator.pop(context);
+  });   
                 return   AlertDialog(
                            contentPadding: EdgeInsets.symmetric(horizontal: 24.0), // Adjust the padding
 
@@ -437,7 +442,9 @@ setState(() {
  showDialog(
        context: context,
        builder: (context) {
-         
+         Future.delayed(Duration(seconds: 1),(){
+    Navigator.pop(context);
+  });
      
        
        return   AlertDialog(
@@ -514,7 +521,9 @@ setState(() {
        context: context,
        builder: (context) {
          
-     
+     Future.delayed(Duration(seconds: 3),(){
+    Navigator.pop(context);
+  });
        
        return   AlertDialog(
                            contentPadding: EdgeInsets.symmetric(horizontal: 24.0), // Adjust the padding
@@ -596,26 +605,29 @@ Padding(
     SizedBox(height: 30,),
     InkWell(
      onTap: ()async{
-
-getcreateUsercontact();
+  // CircularProgressIndicator();
+await  getcreateUsercontact();
     showsAlertDialogBox();
    getshowcontactListData(id);
     if(isalertBoxVisible){
-    await  showDialog(
+      showDialog(
        context: context,
        builder: (context) {
-                    
+                    Future.delayed(Duration(seconds: 2),(){
+    Navigator.push(context, MaterialPageRoute(builder:(context) => contactPage(),));
+  });
        return   AlertDialog(
                            contentPadding: EdgeInsets.symmetric(horizontal: 24.0), // Adjust the padding
-
-                  title: Text('Messages'),
+                  title: 
+                      Text('Messages'),
+                                     
                   content: 
                   
                   Text('${Usercreatecontact}'),
                 );    });
     }
     // if(Usercreatecontact/){
-    Navigator.push(context, MaterialPageRoute(builder:(context) => contactPage(),));
+    // Navigator.push(context, MaterialPageRoute(builder:(context) => contactPage(),));
     
      },
       child: Container(

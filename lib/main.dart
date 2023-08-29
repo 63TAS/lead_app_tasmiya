@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_lead_project/Userpage.dart';
+import 'package:flutter_lead_project/provider/PROVIDER.dart';
+import 'package:provider/provider.dart';
+
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+  
+     ChangeNotifierProvider(
+      create: (context) => FilterPage(),
+   child:  MyApp())
+  );
 }
 
 class MyApp extends StatelessWidget {
