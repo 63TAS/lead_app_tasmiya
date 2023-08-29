@@ -12,11 +12,12 @@ Future<List<dynamic>> getProfileData() async {
         headers: {
           'token': '6fba84eba684a66dfd52213a34327e14dfffb322',
         });
-
     var data = json.decode(response.body);
     print(response.body);
+
     leadsProfileData = data['user_profile_list_data'];
     print('leadsProfile: $leadsProfileData');
+    
     return leadsProfileData;
   } catch (error) {
     print('Error: $error');
@@ -123,18 +124,18 @@ Future<List<dynamic>> getcityData() async {
     rethrow;
   }
 }
-
+//show lead list
 Map<String, dynamic>? showcontactlist;
 Future<Map<String, dynamic>> getshowcontactListData(String id) async {
   try {
     var response = await http.get(
       Uri.parse(
-          'https://b1.bhaaraterp.com/leads/api/contact/?store_id=1&user_id=486&search_value=$id'),
+'https://b1.bhaaraterp.com/leads/api/contact/?store_id=1&user_id=486&short_by=1&search_value=id=$id'),
+      
       headers: {
         'token': '6fba84eba684a66dfd52213a34327e14dfffb322',
       },
     );
-
     var result = json.decode(response.body);
     showcontactlist = result;
     print('hello tasmiya Devlops:${showcontactlist}');
@@ -144,6 +145,7 @@ Future<Map<String, dynamic>> getshowcontactListData(String id) async {
     rethrow;
   }
 }
+
 
 //get countrydata
 List<dynamic> countryData = [];
@@ -298,6 +300,7 @@ Future<List<dynamic>> getfavroites() async {
 //delete list
 List<dynamic> removeData = [];
 Future<List<dynamic>> getRemove() async {
+  
   try {
     var response = await http.get(
         Uri.parse(
@@ -316,3 +319,30 @@ Future<List<dynamic>> getRemove() async {
     rethrow;
   }
 }
+
+
+//show single contacList
+List<dynamic> singlecontact =[];
+Future<List<dynamic>> getSinglecontact(String id) async {
+  
+  try {
+    var response = await http.get(
+        Uri.parse(
+            'https://b1.bhaaraterp.com/leads/api/get-contact-data/?store_id=1&contact_id=$id'),
+        headers: {
+          'token': '6fba84eba684a66dfd52213a34327e14dfffb322',
+        });
+
+    var data = json.decode(response.body);
+    print(response.body);
+    singlecontact = data['data'];
+    print(' single tashu data: ${singlecontact}');
+    return singlecontact;
+  } catch (error) {
+    print(error);
+    rethrow;
+  }
+}
+
+
+

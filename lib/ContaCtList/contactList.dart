@@ -2,6 +2,7 @@ import 'dart:ffi';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_lead_project/ContaCtList/CreateContact.dart';
+import 'package:flutter_lead_project/ContaCtList/showDetai;lsPage.dart';
 import 'package:flutter_lead_project/api/ApiFile.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -557,8 +558,8 @@ Container(
             SizedBox(height: 30,
             ),
              InkWell(
-              onTap: ()async{
-              await  getFilterData(
+              onTap: (){
+                getFilterData(
 check_first_namecontroller.text,
 check_last_name_namecontroller.text,
  check_assistantcontroller.text,
@@ -639,15 +640,11 @@ void _showsortingbottomSheet(BuildContext context) {
                   ),
                   SizedBox(width: 160,
                   ),
+                  
                   IconButton(onPressed: (){
-
-                  }, icon: Icon(Icons.check_box_outline_blank))
-              
-              
-            
-            
-            
-            
+                  },
+                   icon: Icon(Icons.check_box_outline_blank))
+           
                 ]),
                 onTap: () {
                   // Handle option 1 tap
@@ -972,7 +969,9 @@ getfavroites();
  //   child:   FutureBuilder(
     
  //     future: getFilterData(),
-if(isFvaoritesButton== false)
+
+
+// if(isFvaoritesButton== false)
 
      Container(
     height: 1000,
@@ -1003,154 +1002,163 @@ if(isFvaoritesButton== false)
           final List<dynamic> contactsData = showContactlist!['data'];
  
  
- if (contactsData.isEmpty) {
-          return Center(child: Text('No contacts available.'));
-        }
-      //  final showcontactlist = showContactlist['data'];
  
-        return ListView.builder(
-    scrollDirection: Axis.vertical,
-           itemCount: contactsData.length,
-            itemBuilder: (context, index) {
-    // final showcontactlist = showcontactlist[index];
- 
-          return 
-          Column(children: [
-    
-            Row(children: [
-        CircleAvatar(
-    
-         radius: 30,
-    
-        backgroundColor: Colors.grey,
-    
-        child: Icon(Icons.person,
-    
-        color: Colors.blue,
-    
-        ),),
-     SizedBox(width: 30,),
-     Text('${contactsData[index]['first_name']}',
- style: TextStyle(fontWeight: FontWeight.bold,
- fontSize: 20,
- 
- ),
- ),
- // :Text('${searchData?[index]['data']}'),
-
- // Text('${contactsData[index]['email']}'),
- 
-    Spacer(),
- 
- IconButton(onPressed: (){
- 
- 
-
- PopupMenuButton<String>(
-    itemBuilder: (BuildContext context) {
-  return <PopupMenuEntry<String>>[
-      PopupMenuItem<String>(
-       value: 'Edit',
-  child: Text('Edit'),
- ),
-
- PopupMenuItem<String>(
-  value: 'Delete',
-  child: Text('Delete'),
- ),
- ];
- },
-
-   onSelected: (String selectedValue) {
-    // Handle the selected option
-    if (selectedValue =='Edit') {
-      // Handle option 1
-    } else if (selectedValue == 'Delete') {
-      // Handle option 2
-    }
-   }
- );
- 
- 
- 
- 
- 
- }, 
- icon: Icon(Icons.more_vert),
- )    ,  
-        
-            
-            ],),
-    SizedBox(height:5,),
+          // return Center(child: Text('No contacts available.'));
        
-         Padding(
-           padding: const EdgeInsets.only(right:150),
-           child: Text('+91${contactsData[index]['phone']}'),
-         ),
-   Row(
-     children: [
-       SizedBox(width: 70,),
+        
+       final showcontactlist = showContactlist['data'];
  
- 
-       Text('${contactsData[index]['email']}',
-       style: TextStyle(fontSize:14),
-       ),
+        return InkWell(
+          onTap: (){
     
-        //  SizedBox(width: 30,),
- Spacer(),
- IconButton(
-  onPressed: (){
-  Get.snackbar(
-  'items added to your list',
-   'Messages',
-   backgroundColor: Colors.green,
-   colorText: Colors.white,
-  duration: Duration(seconds: 10),
- snackPosition: SnackPosition.BOTTOM,
-  );
- 
- print(isFavorites);
- setState(() {
- isFavorites = !isFavorites;
- });
- 
-
- 
- 
- }, 
-
-
- icon: isFavorites?
- Icon(Icons.favorite,
- color: Colors.grey,
- ):Icon(Icons.favorite,
- color: Colors.blue,
- ),
- 
- )
-     ],
-   ),
- 
- 
- SizedBox(height: 40,)
          
-          ],)
-    
-          ;
-    
-        },);
+          Navigator.push(context, MaterialPageRoute(builder:(context) => showDetailsPage(),));  
+          },
+          child: ListView.builder(
+            scrollDirection: Axis.vertical,
+             itemCount: contactsData.length,
+              itemBuilder: (context, index) {
+            // final showcontactlist = showcontactlist[index];
+         
+            return 
+            Column(children: [
+            
+              Row(children: [
+          CircleAvatar(
+            
+           radius: 30,
+            
+          backgroundColor: Colors.grey,
+            
+          child: Icon(Icons.person,
+            
+          color: Colors.blue,
+            
+          ),),
+             SizedBox(width: 30,),
+             Text('${contactsData[index]['first_name']}',
+         style: TextStyle(fontWeight: FontWeight.bold,
+         fontSize: 20,
+         
+         ),
+         ),
+         // :Text('${searchData?[index]['data']}'),
+        
+         // Text('${contactsData[index]['email']}'),
+         
+            Spacer(),
+         
+         IconButton(onPressed: (){
+         
+         
+        
+         PopupMenuButton<String>(
+            itemBuilder: (BuildContext context) {
+          return <PopupMenuEntry<String>>[
+              PopupMenuItem<String>(
+               value: 'Edit',
+          child: Text('Edit'),
+         ),
+        
+         PopupMenuItem<String>(
+          value: 'Delete',
+          child: Text('Delete'),
+         ),
+         ];
+         },
+        
+           onSelected: (String selectedValue) {
+            // Handle the selected option
+            if (selectedValue =='Edit') {
+              // Handle option 1
+            } else if (selectedValue == 'Delete') {
+              // Handle option 2
+            }
+           }
+         );
+         
+         
+         
+         
+         
+         }, 
+         icon: Icon(Icons.more_vert),
+         )    ,  
+          
+              
+              ],),
+            SizedBox(height:5,),
+               
+           Padding(
+             padding: const EdgeInsets.only(right:150),
+             child: Text('+91${contactsData[index]['phone']}'),
+           ),
+           Row(
+             children: [
+               SizedBox(width: 70,),
+     
+       
+               Text('${contactsData[index]['email']}',
+               style: TextStyle(fontSize:14),
+               ),
+            
+          //  SizedBox(width: 30,),
+         Spacer(),
+         IconButton(
+          onPressed: (){
+          Get.snackbar(
+          'items added to your list',
+           'Messages',
+           backgroundColor: Colors.green,
+           colorText: Colors.white,
+          duration: Duration(seconds: 10),
+         snackPosition: SnackPosition.BOTTOM,
+          );
+         
+         print(isFavorites);
+         setState(() {
+         isFavorites = !isFavorites;
+         });
+                             
+         }, 
+        
+        
+         icon: isFavorites?
+         Icon(Icons.favorite,
+         color: Colors.grey,
+         ):Icon(Icons.favorite,
+         color: Colors.blue,
+         ),
+         
+         )
+             ],
+           ),
+         
+         
+         SizedBox(height: 40,)
+           
+            ],)
+            
+            ;
+            
+          },),
+        );
     
       }else{
     
         return Text('sorry');
     
-      }
+ 
+     
+       }
+      }),
+      ),
+   
+   
     
-    }
           
-    ),
- ),
- //for favorites List
+   
+//  //for favorites List
  
   Container(
     height: 1000,
@@ -1276,8 +1284,8 @@ color: Colors.black,
       )
    ),
    
-]) ),
- );
+// ]) ),
+ ])));
 // floatingActionButton: FloatingActionButton(
 //   // backgroundColor: Colors.white,
 //   // clipBehavior: Clip.antiAlias,
